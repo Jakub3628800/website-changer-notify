@@ -12,7 +12,7 @@ jobs:
         id: checkchange
         run: |
           cat sha_sum
-          curl google.com | sha1sum > sha_sum
+          curl www.google.com | sha1sum > sha_sum
           cat sha_sum
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
