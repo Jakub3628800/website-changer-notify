@@ -18,6 +18,6 @@ jobs:
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
           git add sha_sum
-          git commit -m "website $URL has changed since last time"  # This line will fail if the sha of the website does not change - Action will not push in that case
+          date | xargs git commit -m  # This line will fail if the sha of the website does not change - Action will not push in that case
           git push
           
