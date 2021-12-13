@@ -18,6 +18,7 @@ jobs:
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
           git add sha_sum
-          date | xargs git commit -m  # This line will fail if the sha of the website does not change - Action will not push in that case
+          dt=$(date)
+          cat dt | xargs git commit -m  # This line will fail if the sha of the website does not change - Action will not push in that case
           git push
           
