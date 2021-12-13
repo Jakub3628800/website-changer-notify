@@ -15,5 +15,7 @@ jobs:
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
           git add sha_sum
-          git commit -m "update wikipedia sha"
-          git push
+          if ! git diff --no-ext-diff --quiet --exit-code; then
+            git commit -m "update wikipedia sha"
+            git push
+          fi
