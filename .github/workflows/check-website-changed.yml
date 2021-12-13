@@ -1,3 +1,4 @@
+# Check if html websites changed since the last time this action was run
 name: 'Check website changed' 
 on:
   workflow_dispatch:
@@ -11,12 +12,12 @@ jobs:
       - name: Check change and commit a new sha to repo
         id: checkchange
         run: |
-          cat sha_sum
-          curl www.google.com | sha1sum > sha_sum
-          cat sha_sum
+          URL=${{ secrets.URL }}
+          curl $URL | sha1sum > sha_sum
+
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
           git add sha_sum
-          git commit -m "update wikipedia sha"
+          git commit -m "website $URL has changed since last time"  # This line will fail if the sha of the website does not change - Action will not push in that case
           git push
           
