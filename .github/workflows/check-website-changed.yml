@@ -19,6 +19,7 @@ jobs:
           git config --global user.name "GHA"
           git add sha_sum
           dt=$(date)
-          git commit -m "$dt" # This line will fail if the sha of the website does not change - Action will not push in that case
+          
+          (git diff --staged --quiet --exit-code); if [[ "$?" -eq "1" ]]; then git commit -m "$dt"; else echo "No changes to SHA"; fi
           git push
           
