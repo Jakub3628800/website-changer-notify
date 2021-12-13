@@ -11,7 +11,9 @@ jobs:
       - name: Check change and commit a new sha to repo
         id: checkchange
         run: |
+          cat sha_sum
           curl google.com | sha1sum > sha_sum
+          cat sha_sum
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
           git add sha_sum
