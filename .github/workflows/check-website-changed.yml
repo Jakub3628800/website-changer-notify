@@ -1,0 +1,19 @@
+name: 'Check website changed' 
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Check change and commit a new sha to repo
+        id: checkchange
+        run: |
+          curl wikipedia.org | sha1sum > sha_sum
+          git config --global user.email "gha@test.com"
+          git config --global user.name "GHA"
+          git add sha_sum
+          git commit -m "update wikipedia sha"
+          git push
