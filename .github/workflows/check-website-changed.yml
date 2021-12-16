@@ -10,14 +10,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Check change and commit a new sha to repo
+        uses: actions/setup-python@v2
         id: checkchange
         run: |
           URL=${{ secrets.URL }}
-          curl $URL | sha1sum > sha_sum
+          pip install requests
+          python3 make_request.py $URL
 
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
-          git add sha_sum
+          git add sha1sum
           git commit -m "website $URL has changed since last time"  # This line will fail if the sha of the website does not change - Action will not push in that case
           git push
           
