@@ -18,7 +18,7 @@ jobs:
 
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
-          git add sha_sum
+          git add sum
           dt=$(date)
           
           (git diff --staged --quiet --exit-code); if [[ "$?" -eq "1" ]]; then git commit -m "$dt"; else echo "No changes to SHA"; fi

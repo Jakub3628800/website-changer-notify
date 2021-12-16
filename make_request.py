@@ -26,4 +26,4 @@ def write_content_to_file(filename: str, content) -> None:
 if __name__=="__main__":
     url = sys.argv[1]
     r = make_request(url)
-    write_content_to_file("sha1sum", hashlib.md5(r.content).hexdigest())
+    write_content_to_file("sum", hashlib.md5(r.content).hexdigest())
