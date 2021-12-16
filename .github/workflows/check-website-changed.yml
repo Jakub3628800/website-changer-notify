@@ -10,7 +10,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Check change and commit a new sha to repo
-        uses: actions/setup-python@v2
         id: checkchange
         run: |
           URL=${{ secrets.URL }}
