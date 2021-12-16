@@ -19,7 +19,8 @@ jobs:
 
           git config --global user.email "gha@test.com"
           git config --global user.name "GHA"
-          git add sha1sum
-          git commit -m "website $URL has changed since last time"  # This line will fail if the sha of the website does not change - Action will not push in that case
-          git push
+          git add sha_sum
+          dt=$(date)
           
+          (git diff --staged --quiet --exit-code); if [[ "$?" -eq "1" ]]; then git commit -m "$dt"; else echo "No changes to SHA"; fi
+          git push
